@@ -7,7 +7,7 @@ class SignInSection extends Component {
 
     <div>	
       <div className='col-xs-3'>
-      	Hi! <a href='/signIn'>Sign in</a> or <a href='#'>register</a>
+      	Hi! <a href='/signIn'>Sign in</a> or <a href='register'>register</a>
       </div>
 
       <div className='col-xs-3'>
