@@ -4,9 +4,10 @@
 // 4. each value will be a single reducer
 
 import { combineReducers } from 'redux'; //pass combine reducers an object
+import RegisterReducer from './RegisterReducer.js';
 
 const rootReducer = combineReducers({
-
+	register: RegisterReducer
 })
 
 export default rootReducer;
