@@ -17,8 +17,8 @@ class Register extends Component {
     var username = event.target[0].value;
     var password = event.target[1].value;
 
-    console.log(username, password);  
-    console.log('hi');
+    // console.log(username, password);  
+    // console.log('hi');
     this.props.registerAction({
       usernameEntered: username,
       passwordEntered: password
@@ -33,11 +33,11 @@ class Register extends Component {
   }
 
   render() {
-    console.log(this.props.registerResponse)
+    console.log(this.props.registerResponse);
     return (
     	<div>
     		<div className='col-xs-12'>
-
+          <h1> {this.props.registerResponse.msg}</h1>
     			<div className='col-xs-7 col-xs-offset-4 margin-above'>
 	    			<form onSubmit={this.registrationSubmit}>
 	    				<input type='text' name='userName' placeholder='Username' />
