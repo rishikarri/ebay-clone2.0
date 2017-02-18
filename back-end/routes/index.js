@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var config = require('../Config/config.js');
 var mysql = require('mysql');
+var bcrypt = require('bcrypt-nodejs');
 
 var pool = mysql.createPool({
 	host: config.host,
@@ -14,6 +15,13 @@ var pool = mysql.createPool({
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
+
+router.post('/login', function(req, res, next){
+	console.log('i am hit');
+	res.json({
+		msg: 'it is lit'
+	})
+})
 
 router.post('/register', function(req, res,next) {
 
@@ -30,7 +38,7 @@ router.post('/register', function(req, res,next) {
 		connection.query(checkDuplicateUser, [usernameToPutInDatabase], (error, results, fields)=>{
 			if(results.length === 0){
 				var insertUserQuery = "INSERT INTO users (username, password) VALUES " + "(?, ?)";
-				connection.query(insertUserQuery, [usernameToPutInDatabase, passwordToPutInDatabase], (error2, results2)=>{
+				connection.query(insertUserQuery, [usernameToPutInDatabase, bcrypt.hashSync(passwordToPutInDatabase)], (error2, results2)=>{
 					res.json({
 						msg: "User has been inserted into the database"
 					});
