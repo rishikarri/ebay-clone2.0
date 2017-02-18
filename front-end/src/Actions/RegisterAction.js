@@ -4,7 +4,7 @@ import $ from 'jquery';
 //this particular action is going to take in some data so that it can make an ajax request to the backend 
 
 export default function(registerData){
-	console.log('test');
+	// console.log('test');
 	// let's make an ajax request to the backend - later we will use pm2 to deploy properly - 
 	var thePromise = $.ajax({
 		method: "Post",

@@ -14,11 +14,19 @@ class Register extends Component {
   }
   registrationSubmit(event){
     event.preventDefault(); 
+    var username = event.target[0].value;
+    var password = event.target[1].value;
+
+    console.log(username, password);  
     console.log('hi');
     this.props.registerAction({
-      hey: 'hey I am data'
+      usernameEntered: username,
+      passwordEntered: password,
 
     })
+
+      
+
 
 
     
