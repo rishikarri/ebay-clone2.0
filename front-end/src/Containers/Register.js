@@ -10,17 +10,22 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.registrationSubmit = this.registrationSubmit.bind(this);
+
   }
   registrationSubmit(event){
     event.preventDefault(); 
     console.log('hi');
     this.props.registerAction({
+      hey: 'hey I am data'
 
     })
+
+
     
   }
 
   render() {
+    console.log(this.props.registerResponse)
     return (
     	<div>
     		<div className='col-xs-12'>
@@ -44,7 +49,13 @@ function mapDispatchToProps(dispatch){
     registerAction: RegisterAction
   }, dispatch)
 }
+
+function mapStateToProps(state){
+  return{
+    registerResponse: state.register
+  }
+}
 //now rather than exporting the actual component, we need to export the connection - come back to this later but what I do know is that this allows me to give props to this component
 
-export default connect(null, mapDispatchToProps)(Register)
+export default connect(mapStateToProps, mapDispatchToProps)(Register)
 
