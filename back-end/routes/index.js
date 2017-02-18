@@ -17,13 +17,38 @@ router.get('/', function(req, res, next) {
 
 router.post('/register', function(req, res,next) {
 
+	// let's make a query that is going to check whether or not the user enterd exists in the data base
+	// cool 
+	//now let's grab the username and password from the req.body 
+
 	var checkDuplicateUser = "SELECT * FROM users WHERE username = ?"; 
+	var usernameToPutInDatabase = req.body.usernameEntered;
+	var passwordToPutInDatabase = req.body.passwordEntered;
+
+	pool.getConnection((err, connection)=>{
+		//if there are no results, that means that we have the green light to enter info into the database. If there are results that means that someonwe with thteat username already exists 
+		connection.query(checkDuplicateUser, [usernameToPutInDatabase], (error, results, fields)=>{
+			if(results.length === 0){
+				var insertUserQuery = "INSERT INTO users (username, password) VALUES " + "(?, ?)";
+				connection.query(insertUserQuery, [usernameToPutInDatabase, passwordToPutInDatabase], (error2, results2)=>{
+					res.json({
+						msg: "User has been inserted into the database"
+					});
+				})
+			}else{
+				res.json({
+					msg:  "Username has been taken :O !"
+				})
+			}	
+		})
+		connection.release();
+		
+	})
 
 	pool.getConnection((err, connection)=>{
 		console.log(connection);
-		var usernameToPutInDatabase = req.body.usernameEntered;
-		var passwordToPutInDatabase = req.body.passwordEntered;
-		var insertUserQuery = "INSERT INTO users (username, password) VALUES " + "(?, ?)";
+		
+		
 
 		
 
@@ -31,11 +56,7 @@ router.post('/register', function(req, res,next) {
 		// 	u: usernameToPutInDatabase,
 		// 	p: passwordToPutInDatabase
 		// })
-		connection.query(insertUserQuery, [usernameToPutInDatabase, passwordToPutInDatabase], (error2, results2)=>{
-			res.json({
-				msg: "User has been inserted into the database"
-			});
-		})
+		
 
 		connection.release()
 	});
