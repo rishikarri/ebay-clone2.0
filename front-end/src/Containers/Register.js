@@ -21,7 +21,7 @@ class Register extends Component {
     console.log('hi');
     this.props.registerAction({
       usernameEntered: username,
-      passwordEntered: password,
+      passwordEntered: password
 
     })
 
