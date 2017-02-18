@@ -17,6 +17,8 @@ router.get('/', function(req, res, next) {
 
 router.post('/register', function(req, res,next) {
 
+	var checkDuplicateUser = "SELECT * FROM users WHERE username = ?"; 
+
 	pool.getConnection((err, connection)=>{
 		console.log(connection);
 		var usernameToPutInDatabase = req.body.usernameEntered;
@@ -31,7 +33,7 @@ router.post('/register', function(req, res,next) {
 		// })
 		connection.query(insertUserQuery, [usernameToPutInDatabase, passwordToPutInDatabase], (error2, results2)=>{
 			res.json({
-				msg:"userInserted"
+				msg: "User has been inserted into the database"
 			});
 		})
 
