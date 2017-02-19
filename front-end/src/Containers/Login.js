@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 //bring in login action
 import LoginAction from '../Actions/LoginAction.js';
+import { browserHistory } from 'react-router';
 
 class Login extends Component {
 	constructor(props) {
@@ -24,6 +25,9 @@ class Login extends Component {
 	render() {
 		//RK Start Here
 		console.log(this.props.loginResponse.msg);
+		if (this.props.loginResponse.msg === 'Correct username and password! You have been logged in!'){
+			browserHistory.push('/');
+		}
     	return (
 
     		<div>
