@@ -34,7 +34,9 @@ router.post('/login', function(req, res, next){
 				})
 			}else{
 				// now we know the user exists because results.length > 0 
-				if (passwordAtLogin === results[0].password){
+
+				var checkHash = bcrypt.compareSync(passwordAtLogin, results[0].password)//this will evaluate to true or false - false if the password is incorrect
+				if (checkHash){
 					//we have a match
 					res.json({
 						msg: "Correct username and password! You have been logged in!"
