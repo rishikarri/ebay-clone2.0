@@ -15,7 +15,10 @@ class Login extends Component {
 		var usernameAtLogin = event.target[0].value;
     	var passwordAtLogin = event.target[1].value;
     	// console.log(usernameAtLogin, passwordAtLogin);
-    	this.props.loginAction();
+    	this.props.loginAction({
+    		usernameAtLogin: usernameAtLogin,
+    		passwordAtLogin: passwordAtLogin 
+    	});
 	}
 
 	render() {

@@ -17,10 +17,42 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next){
-	console.log('i am hit');
-	res.json({
-		msg: 'it is lit'
+	var usernameAtLogin = req.body.usernameAtLogin;
+	var passwordAtLogin = req.body.passwordAtLogin;
+	// console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
+	// console.log(usernameAtLogin, passwordAtLogin);
+	// console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
+
+	pool.getConnection((err, connection)=>{
+		var findUserQuery = "SELECT password FROM users WHERE username = ?"
+		connection.query(findUserQuery, [usernameAtLogin], (error, results, fields)=>{
+			console.log(results);
+			if (results.length === 0){
+				//we know a user with that name doesn't exist
+				res.json({
+					msg: "Sorry - no user exists with that name"
+				})
+			}else{
+				// now we know the user exists because results.length > 0 
+				if (passwordAtLogin === results[0].password){
+					//we have a match
+					res.json({
+						msg: "Correct username and password! You have been logged in!"
+					})
+				}else{
+					res.json({
+						msg: "A user with that name exists! However, that is the incorrect password"
+					})	
+				}
+				
+			}
+		})
+		connection.release();
+		// res.send('hi')
 	})
+	// res.json({
+	// 	msg: 'it is lit'
+	// })
 })
 
 router.post('/register', function(req, res,next) {
