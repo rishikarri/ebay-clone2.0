@@ -33,7 +33,7 @@ class Register extends Component {
   }
 
   render() {
-    console.log(this.props.registerResponse);
+    console.log(this.props);
     return (
     	<div>
     		<div className='col-xs-12'>
