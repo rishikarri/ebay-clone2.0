@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
 
-class SellSomething extends Component {
+class ViewItemsForSaleContents extends Component {
   render() {
     return (
       <div>
-      	<div> Sell Something </div>
+      	<div> Buy this item </div>
       </div>
     );
   }
 }
 
-export default SellSomething;
+export default ViewItemsForSaleContents;

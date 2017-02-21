@@ -6,10 +6,12 @@
 import { combineReducers } from 'redux'; //pass combine reducers an object
 import RegisterReducer from './RegisterReducer.js';
 import LoginReducer from './LoginReducer.js'
+import ViewSaleItemsReducer from './ViewItemsForSaleReducer.js'
 
 const rootReducer = combineReducers({
 	register: RegisterReducer,
-	login: LoginReducer
+	login: LoginReducer,
+	viewSaleItems: ViewSaleItemsReducer
 })
 
 export default rootReducer;
