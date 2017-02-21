@@ -12,12 +12,15 @@ class ViewItemsForSale extends Component {
 
 	retrieveImages(){
 		// console.log('hi hi hi');
+
+		//Rk start here
+		console.log(this.props);
 		this.props.viewItemsForSaleAction({
 
 		})
 	}
  	render() {
- 		console.log(this.props);
+ 		// console.log(this.props);
 	    return (
 	      <div>
 	      	<div> <button onClick={this.retrieveImages}>View items for sale</button></div>
@@ -36,4 +39,10 @@ function mapDispatchToProps(dispatch){
   }, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(ViewItemsForSale)
+function mapStateToProps(state){
+	return{
+		viewItemsForSaleResponse: state.viewSaleItems
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewItemsForSale)

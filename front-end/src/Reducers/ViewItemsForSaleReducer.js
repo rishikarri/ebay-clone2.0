@@ -4,9 +4,10 @@ export default function(state = [], action){
 	
 	switch(action.type){
 		case 'VIEWSALEITEMS':
-			console.log('hiiii! I am a view sale items reducer an action called me');
+			// console.log('hiiii! I am a view sale items reducer an action called me');
 			// console.log(action.payload);
-			return state;
+			// console.log(action.payload);
+			return action.payload;
 				
 	}
 

@@ -17,6 +17,24 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+//router that retrieves all images in the database
+
+router.get('/retrieveImages', (req, res, next)=>{
+	var pullImageURLQuery = 'SELECT imageURL FROM itemsForSale'
+
+	pool.getConnection((err, connection)=>{
+		var pullImageURLQuery = 'SELECT imageURL FROM itemsForSale';
+		connection.query(pullImageURLQuery, (error, results, fields)=>{
+			console.log(results)
+			res.json({
+				vModaURL: results[0].imageURL
+			})
+		})		
+	})
+
+
+})
+
 router.post('/login', function(req, res, next){
 	var usernameAtLogin = req.body.usernameAtLogin;
 	var passwordAtLogin = req.body.passwordAtLogin;

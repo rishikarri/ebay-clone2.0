@@ -8,13 +8,18 @@ export default function(imageData){
 	// let's make an ajax request to the backend - later we will use pm2 to deploy properly - 
 	var thePromise = $.ajax({
 		method: "Get",
-		url: "http://localhost:3000/retrieveImages",
+		url: "http://localhost:3000/retrieveImages"
 		// data: registerData
 	});
-	console.log('view items for sale action');
+
+	thePromise.done(function(data){
+		
+	})
+	// s
 	return(
 		{
-			type: "VIEWSALEITEMS"
+			type: "VIEWSALEITEMS",
+			payload: thePromise
 			
 		}
 	)
