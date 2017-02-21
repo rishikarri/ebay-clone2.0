@@ -38,13 +38,21 @@ router.post('/login', function(req, res, next){
 
 				var checkHash = bcrypt.compareSync(passwordAtLogin, results[0].password)//this will evaluate to true or false - false if the password is incorrect
 				if (checkHash){
-					//we have a match
+					//we have a match - the user entered the correct password
+					//generate a token
+					console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
+					var token = randtoken.uid(40);
+					console.log(token);
+					console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
+					var insertToken = "UPDATE users SET token=? WHERE username=?"
 					res.json({
 						msg: "Correct username and password! You have been logged in!"
+
 					})
 				}else{
 					res.json({
 						msg: "A user with that name exists! However, that is the incorrect password"
+
 					})	
 				}
 				
