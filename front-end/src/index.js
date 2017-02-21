@@ -28,6 +28,7 @@ import Home from './Containers/Home.js';
 import Login from './Containers/Login.js';
 import Register from './Containers/Register.js';
 import Search from './Containers/Search.js';
+import ViewItemsForSaleContents from './Containers/ViewItemsForSaleContents.js';
 
 
 //import reducer 
@@ -51,7 +52,8 @@ ReactDOM.render(
 			<IndexRoute component={Home} />
 			<Route path="login" component={Login} />
 			<Route path="register" component={Register} />
-			<Route path="search/:term" component={Search} />			
+			<Route path="search/:term" component={Search} />
+			<Route path="viewItemsForSale" component={ViewItemsForSaleContents} />						
 		</Route>
 	</Router>
 </Provider>,

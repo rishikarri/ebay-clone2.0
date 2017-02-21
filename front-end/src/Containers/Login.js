@@ -22,12 +22,16 @@ class Login extends Component {
     	});
 	}
 
-	render() {
-		//RK Start Here
-		console.log(this.props.loginResponse.msg);
+	componentDidMount() {
 		if (this.props.loginResponse.msg === 'Correct username and password! You have been logged in!'){
 			browserHistory.push('/');
 		}
+	}
+
+	render() {
+		//RK Start Here
+		console.log(this.props.loginResponse.msg);
+		
     	return (
 
     		<div>

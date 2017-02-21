@@ -7,8 +7,9 @@ export default function(state = [], action){
 	
 	switch(action.type){
 		case 'LOGIN':
-			console.log('hiiii! I am a login reducer an action called me');
-			console.log(action.payload);
+			// console.log('hiiii! I am a login reducer an action called me');
+			// console.log(action.payload);
+			localStorage.setItem("token", action.payload.token);
 			return action.payload;
 	}
 

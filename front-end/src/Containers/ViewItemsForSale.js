@@ -5,7 +5,7 @@ class ViewItemsForSale extends Component {
   render() {
     return (
       <div>
-      	<div> View items for sale </div>
+      	<div> <a href='/viewItemsForSale'>View items for sale</a> </div>
       </div>
     );
   }
