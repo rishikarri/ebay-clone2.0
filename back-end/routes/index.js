@@ -45,10 +45,14 @@ router.post('/login', function(req, res, next){
 					console.log(token);
 					console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
 					var insertToken = "UPDATE users SET token=? WHERE username=?"
-					res.json({
-						msg: "Correct username and password! You have been logged in!"
 
+					connection.query(insertToken, [token, usernameAtLogin], (error, results)=>{
+						res.json({
+							msg: "Correct username and password! You have been logged in!",
+							token: token
+						})
 					})
+					
 				}else{
 					res.json({
 						msg: "A user with that name exists! However, that is the incorrect password"
