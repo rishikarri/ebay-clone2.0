@@ -7,6 +7,7 @@ export default function(state = [], action){
 			// console.log('hiiii! I am a view sale items reducer an action called me');
 			// console.log(action.payload);
 			// console.log(action.payload);
+			console.log('hi i am the view sale items reducer');
 			return action.payload;
 				
 	}

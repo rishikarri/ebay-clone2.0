@@ -4,6 +4,7 @@ var config = require('../Config/config.js');
 var mysql = require('mysql');
 var bcrypt = require('bcrypt-nodejs');
 var randtoken = require('rand-token');
+var stripe = require('stripe')('sk_test_4cfOokBXiZy1HCeKhnttrx1h');
 
 var pool = mysql.createPool({
 	host: config.host,
@@ -20,6 +21,7 @@ router.get('/', function(req, res, next) {
 //router that retrieves all images in the database
 
 router.get('/retrieveImages', (req, res, next)=>{
+	
 	var pullImageURLQuery = 'SELECT imageURL FROM itemsForSale'
 
 	pool.getConnection((err, connection)=>{
@@ -33,6 +35,25 @@ router.get('/retrieveImages', (req, res, next)=>{
 	})
 
 
+})
+
+router.post('/stripe', (req, res, next)=>{
+	stripe.charges.create({
+		amount: req.body.amount,
+		currency: "usd",
+		source: req.body.stripeToken,//obtained with Stripe js
+		description: "charge for anthony.thomas@miniclip.com"
+	}, function(err, charge){
+		if(err){
+			res.json({
+				msg:"errorProcessing"
+			})
+		}else{
+			res.json({
+				msg:"paymentSuccess"
+			})
+		}
+	})
 })
 
 router.post('/login', function(req, res, next){

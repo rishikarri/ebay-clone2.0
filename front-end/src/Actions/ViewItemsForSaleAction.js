@@ -12,9 +12,16 @@ export default function(imageData){
 		// data: registerData
 	});
 
-	thePromise.done(function(data){
+	// thePromise.done(function(data){
+	// 	console.log('data', data)
+	// 	return (
+	// 		{
+	// 			type: "VIEWSALEITEMS",
+	// 			payload: data
+	// 		}
+	// 	)
 		
-	})
+	// })
 	// s
 	return(
 		{
